@@ -1,0 +1,58 @@
+<h2>Danh Sách Bài Viết</h2>
+        <div class="mb-4">
+            <form class="form-inline" action="/posts/search" method="GET">
+                <input class="form-control mr-sm-2" type="search" name="query" placeholder="Tìm kiếm" aria-label="Search">
+                <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Tìm Kiếm</button>
+            </form>
+        </div>
+        <table class="table">
+            <thead class="thead-dark">
+                <a href="/posts/add" class="btn btn-light text-end">Thêm bài viết</a>
+                <tr>
+                    <th scope="col">Hình Ảnh</th>
+                    <th scope="col">Tiêu Đề</th>
+                    <th scope="col">Tác Giả</th>
+                    <th scope="col">Ngày Đăng</th>
+                    <th scope="col">Loại</th>
+                    <th scope="col">Trạng Thái</th>
+                    <th scope="col">Hành Động</th>
+                </tr>
+            </thead>
+            <tbody>
+                <% posts.forEach(function(post){ %>
+                    <tr>
+                        <td><img src="<%= post.image_url %>" alt="Bài viết <%= post.title %>" class="post-image"></td>
+                        <td><%= post.title %></td>
+                        <td><%= post.author %></td>
+                        <td><%= post.publish_date.toLocaleDateString() %></td>
+                        <td><%= post.category_name %></td>
+                        <td><%= post.status %></td>
+                        <td>
+                            
+                            <a href="/posts/edit/<%= post.post_id %>" class="btn btn-primary">Sửa</a>
+                            <a href="/posts/delete/<%= post.post_id %>" class="btn btn-danger" onclick="return confirm('Bạn có chắc chắn muốn xóa post này?');">Xoá</a>
+                            
+                        </td>
+                    </tr>
+                <% }); %>
+            </tbody>
+        </table>
+        <!-- Phân trang -->
+        <nav aria-label="Page navigation">
+            <ul class="pagination">
+                
+                <% if(currentPage > 1) { %>
+                    <li class="page-item"><a class="page-link" href="?page=<%= currentPage - 1 %>">Trước</a></li>
+                <% } %>
+                <% for(let i = 1; i <= totalPages; i++) { %>
+                    <li class="page-item <%= i === currentPage ? 'active' : '' %>">
+                        <a class="page-link" href="?page=<%= i %>"><%= i %></a>
+                    </li>
+                <% } %>
+                <% if(currentPage < totalPages) { %>
+                    <li class="page-item"><a class="page-link" href="?page=<%= currentPage + 1 %>">Sau</a></li>
+                <% } %>
+            </ul>
+        </nav>
+        
+        

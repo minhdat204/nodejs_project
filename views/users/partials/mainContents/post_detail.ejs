@@ -1,0 +1,91 @@
+<section id="contentSection">
+    <div class="row">
+      <div class="col-lg-8 col-md-8 col-sm-8">
+        <div class="left_content">
+          <div class="single_page">
+            <ol class="breadcrumb">
+              <li><a href="/user">Home</a></li>
+              <li><a href="/user/<%= postsdetail.category_name %>"><%= postsdetail.category_name %></a></li>
+            </ol>
+            <h1><%= postsdetail.title %></h1>
+            <div class="post_commentbox"> <a href="#"><i class="fa fa-user"></i><%= postsdetail.author %></a> <span><i class="fa fa-calendar"></i><%= postsdetail.created_at %></span> <a href="#"><i class="fa fa-tags"></i><%= postsdetail.category_name %></a> </div>
+            <div class="single_page_content"> <img class="img-center" src="<%= postsdetail.image_url %>" alt="">
+              <p><%= postsdetail.content %></p>
+              
+              <ul>
+                <% categories.forEach(function(category) { %>
+                  <li class="cat-item"><a href="/user/<%= category.name %>"><%= category.name %></a></li>
+                <% }); %>
+              </ul>
+            </div>
+            <!--COMMENTS-->
+            <div class="comments_section mt-5">
+              <h2 class="text-primary mb-4">Bình luận</h2>
+              <div class="comment_form">
+                <form action="/user/posts/<%= postsdetail.post_id %>/comments" method="POST" class="mb-3">
+                  <div class="form-group">
+                    <label for="email" class="form-label">Email:</label>
+                    <input type="email" class="form-control" id="email" name="email" required>
+                  </div>
+                  <div class="form-group">
+                    <label for="content" class="form-label">Bình luận:</label>
+                    <textarea class="form-control" id="content" name="content" rows="3" placeholder="Nội dung bình luận" required></textarea>
+                  </div>
+                  <button type="submit" class="btn btn-primary">Gửi bình luận</button>
+                </form>
+              </div>
+              <% if (comments.length > 0) { %>
+                <div class="list-group">
+                  <% comments.forEach(function(comment) { %>
+                    <div class="list-group-item list-group-item-action flex-column align-items-start">
+                      <div class="d-flex w-100 justify-content-between">
+                        <h5 class="mb-1 text-primary">Bởi: <%= comment.email %></h5>
+                        <small class="text-muted"><%= comment.create_at %></small>
+                      </div>
+                      <p class="mb-1"><%= comment.content %></p>
+                    </div>
+                  <% }); %>
+                </div>
+              <% } else { %>
+                <p class="text-muted">Chưa có bình luận nào.</p>
+              <% } %>
+            </div>
+            <!--END COMMENTS-->
+
+
+            <div class="social_link">
+              <ul class="sociallink_nav">
+                <li><a href="#"><i class="fab fa-facebook"></i></a></li>
+                <li><a href="#"><i class="fab fa-twitter"></i></a></li>
+                <li><a href="#"><i class="fab fa-google-plus"></i></a></li>
+                <li><a href="#"><i class="fab fa-linkedin"></i></a></li>
+                <li><a href="#"><i class="fab fa-pinterest"></i></a></li>
+              </ul>
+            </div>
+            <div class="related_post">
+              <h2>Related Post <i class="fa fa-thumbs-o-up"></i></h2>
+              <ul class="spost_nav wow fadeInDown animated">
+                <% allposts.forEach((post, index) => { %>
+                  <% if (post.post_id !== postsdetail.post_id && post.category_name === postsdetail.category_name) { %> 
+                    <li>
+                      <div class="media"> <a class="media-left" href="/user/posts/<%= postsdetail.post_id %>"> <img src="<%= post.image_url %>" alt=""> </a>
+                        <div class="media-body"> <a class="catg_title" href="/user/posts/<%= postsdetail.post_id %>"><%= post.title %></a> </div>
+                      </div>
+                    </li>
+                  <% } %>
+                <% }) %>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+      <nav class="nav-slit"> <a class="prev" href="#"> <span class="icon-wrap"><i class="fa fa-angle-left"></i></span>
+        <div>
+          <h3>City Lights</h3>
+          <img src="" alt=""/> </div>
+        </a> <a class="next" href="#"> <span class="icon-wrap"><i class="fa fa-angle-right"></i></span>
+        <div>
+          <h3>Street Hills</h3>
+          <img src="" alt=""/> </div>
+        </a>
+      </nav>

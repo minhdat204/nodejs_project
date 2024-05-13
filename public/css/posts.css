@@ -1,0 +1,20 @@
+/* CSS cho bảng */
+.table-hover tbody tr:hover {
+    background-color: #f5f5f5;
+}
+.thead-dark th {
+    background-color: #343a40;
+    color: white;
+}
+.badge-success {
+    background-color: #28a745;
+}
+.badge-secondary {
+    background-color: #6c757d;
+}
+.post-image {
+    width: 100%; /* hoặc kích thước cụ thể, ví dụ: 150px */
+    height: auto; /* giữ tỷ lệ hình ảnh */
+    display: block; /* loại bỏ khoảng trắng dưới hình ảnh */
+    margin: 0 auto; /* căn giữa hình ảnh nếu cần */
+}

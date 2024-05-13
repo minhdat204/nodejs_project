@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title><%= categoryName %></title>
+  <link rel="stylesheet" href="/css/bootstrap.min.css">
+  <link rel="stylesheet" href="/css/style.css">
+  <link rel="shortcut icon" type="image/png" href="/images/favicon.ico"/>
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet">
+</head>
+<body>
+  <div class="container mt-4">
+    <h1><%= categoryName %></h1>
+    <% if (allposts.length > 0) { %>
+      <div class="single_sidebar">
+        <h2><span></span></h2>
+        <ul class="spost_nav">
+            <% allposts.forEach(function(post) { %>
+          <li>
+            <div class="media wow fadeInDown"> <a href="/user/posts/<%= post.post_id %>" class="media-left">
+                <% if (post.image_url) { %>
+                    <img src="<%= post.image_url %>" alt="<%= post.title %>">
+                  <% } else { %>
+                    <img src="" alt="Default Image">
+                  <% } %>
+                </a>
+                <div class="media-body">
+                    <a href="/user/posts/<%= post.post_id %>" class="catg_title h4"><%= post.title %></a>
+                </div>
+                <div>
+                    <p><%= post.content.substring(0, 150) %>...</p>
+                </div>
+            </div>
+          </li>
+          <% }); %>
+        </ul>
+      </div>
+    <% } else { %>
+      <p>Không tìm thấy bài viết nào.</p>
+    <% } %>
+  </div>
+  <script src="/js/jquery.min.js"></script>
+  <script src="/js/bootstrap.min.js"></script>
+</body>
+</html>

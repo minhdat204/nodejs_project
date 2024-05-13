@@ -1,0 +1,76 @@
+<!-- Quản lý danh mục -->
+<h2 class="my-4">Quản Lý Danh Mục</h2>
+<!-- Bảng hiển thị danh mục -->
+<table class="table table-hover">
+    <thead class="bg-dark text-white">
+        <tr>
+            <th scope="col">#</th>
+            <th scope="col">Tên Danh Mục</th>
+            <th scope="col">Ngày Tạo</th>
+            <th scope="col">Hành Động</th>
+        </tr>
+    </thead>
+    <tbody>
+        <% categories.forEach(function(category, index) { %>
+            <tr>
+                <th scope="row"><%= index + 1 %></th>
+                <td><%= category.name %></td>
+                <td><%= category.created_at.toDateString() %></td>
+                <td>
+                    <a href="/categories/update/<%= category.category_id %>" class="btn btn-primary btn-action" data-toggle="modal" data-target="#editCategoryModal">Sửa</a>
+                    <a href="" onclick="confirmDelete('<%= category.category_id %>')" class="btn btn-danger btn-action">Xoá</a>
+                </td>
+            </tr>
+        <% }); %>
+    </tbody>
+</table>
+<!-- Nút kích hoạt modal để thêm danh mục mới -->
+<button type="button" class="btn btn-dark" data-toggle="modal" data-target="#addCategoryModal">
+    Thêm Danh Mục Mới
+</button>
+<!-- Modal để thêm danh mục mới -->
+<div class="modal fade" id="addCategoryModal" tabindex="-1" role="dialog" aria-labelledby="addCategoryModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header bg-primary text-white">
+                <h5 class="modal-title" id="addCategoryModalLabel">Thêm Danh Mục Mới</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">×</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <!-- Form để thêm danh mục mới -->
+                <form action="/categories" method="post">
+                    <div class="form-group">
+                        <label for="categoryName">Tên Danh Mục</label>
+                        <input type="text" class="form-control" id="categoryName" name="name" required>
+                    </div>
+                    <button type="submit" class="btn btn-primary">Thêm Danh Mục</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Modal sửa chủ đề -->
+<div class="modal fade" id="editCategoryModal" tabindex="-1" role="dialog" aria-labelledby="editCategoryModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header bg-warning text-white">
+                <h5 class="modal-title" id="editCategoryModalLabel">Sửa danh mục</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">×</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <!-- Form để sửa chủ đề -->
+                <form action="" id="editCategoryForm" method="POST">
+                    <div class="form-group">
+                        <label for="editCategoryName">Tên danh mục</label>
+                        <input type="text" class="form-control" id="editCategoryName" name="name" required>
+                    </div>
+                    <button type="submit" class="btn btn-warning">Cập Nhật danh mục</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

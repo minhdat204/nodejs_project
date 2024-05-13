@@ -1,0 +1,203 @@
+<!--left content-->
+<section id="contentSection">
+    <div class="row">
+      <div class="col-lg-8 col-md-8 col-sm-8">
+        <div class="left_content">
+
+          <div class="single_post_content">
+            <h2><span>Business</span></h2>
+            <div class="single_post_content_left">
+                <%
+                let foundBusinessPost = false;
+                let count = 0;
+                %>
+
+                <% allposts.forEach((post, index) => { %>
+                    <% if (!foundBusinessPost && post.category_name === 'Business') { %> 
+                        <ul class="business_catgnav wow fadeInDown">
+                            <li>
+                                <figure class="bsbig_fig"> 
+                                    <a href="/user/posts/<%= post.post_id %>" class="featured_img"> 
+                                        <img alt="" src="<%= post.image_url %>"> 
+                                        <span class="overlay"></span> 
+                                    </a>
+                                    <figcaption> 
+                                        <a href="/user/posts/<%= post.post_id %>"><%= post.title %></a> 
+                                    </figcaption>
+                                    <p><%= post.content.substring(0, 150) %>...</p>
+                                </figure>
+                            </li>
+                        </ul>
+                        <% foundBusinessPost = true; %>
+                    <% } %>
+                <% }) %>
+            </div>
+            <div class="single_post_content_right">
+                <% allposts.forEach((post, index) => { %>
+                    <% if (foundBusinessPost) { %> 
+                        <% if (post.category_name === 'Business') {%>
+                            <% foundBusinessPost = false; %>
+                        <% } %>
+                    <% } else if (post.category_name === 'Business' && count < 4) { %>
+                        <ul class="spost_nav">
+                            <li>
+                                <div class="media wow fadeInDown"> 
+                                    <a href="/user/posts/<%= post.post_id %>" class="media-left"> 
+                                        <img alt="" src="<%= post.image_url %>"> 
+                                    </a>
+                                    <div class="media-body"> 
+                                        <a href="/user/posts/<%= post.post_id %>" class="catg_title"><%= post.title %></a> 
+                                    </div>
+                                </div>
+                            </li>
+                        </ul>
+                        <% count = count + 1; %>
+                    <% } %>
+                <% }) %>
+            </div>
+          </div>
+
+          <div class="fashion_technology_area">
+            <div class="fashion">
+              <div class="single_post_content">
+                <h2><span>Fashion</span></h2>
+                <%
+                let foundFashionPost = false;
+                count = 0;
+                %>
+
+                <% allposts.forEach((post, index) => { %>
+                    <% if (!foundFashionPost) { %>
+                        <% if (post.category_name === 'Fashion'){ %> 
+                            <ul class="business_catgnav wow fadeInDown">
+                            <li>
+                                <figure class="bsbig_fig"> <a href="/user/posts/<%= post.post_id %>" class="featured_img"> <img alt="" src="<%= post.image_url %>"> <span class="overlay"></span> </a>
+                                <figcaption> <a href="/user/posts/<%= post.post_id %>"><%= post.title %></a> </figcaption>
+                                <p><%= post.content.substring(0, 150) %>...</p>
+                                </figure>
+                            </li>
+                            </ul>
+                            <% foundFashionPost = true; %>
+                        <% } %>
+                    <% } else if (post.category_name === 'Fashion' && count < 4) { %>
+                        <ul class="spost_nav">
+                        <li>
+                            <div class="media wow fadeInDown"> <a href="/user/posts/<%= post.post_id %>" class="media-left"> <img alt="" src="<%= post.image_url %>"> </a>
+                            <div class="media-body"> <a href="/user/posts/<%= post.post_id %>" class="catg_title"><%= post.title %></a> </div>
+                            </div>
+                        </li>
+                        </ul>
+                        <% count = count + 1 %>
+                    <% } %>
+                <% }) %>
+              </div>
+            </div>
+            
+
+            <div class="technology">
+              <div class="single_post_content">
+                <h2><span>Technology</span></h2>
+                <%
+                let foundTechnologyPost = false;
+                count = 0;
+                %>
+
+                <% allposts.forEach((post, index) => { %>
+                    <% if (!foundTechnologyPost) { %>
+                        <% if (post.category_name === 'Technology'){ %> 
+                            <ul class="business_catgnav wow fadeInDown">
+                            <li>
+                                <figure class="bsbig_fig"> <a href="/user/posts/<%= post.post_id %>" class="featured_img"> <img alt="" src="<%= post.image_url %>"> <span class="overlay"></span> </a>
+                                <figcaption> <a href="/user/posts/<%= post.post_id %>"><%= post.title %></a> </figcaption>
+                                <p><%= post.content.substring(0, 150) %>...</p>
+                                </figure>
+                            </li>
+                            </ul>
+                            <% foundTechnologyPost = true; %>
+                        <% } %>
+                    <% } else if (post.category_name === 'Technology' && count < 4) { %>
+                        <ul class="spost_nav">
+                        <li>
+                            <div class="media wow fadeInDown"> <a href="/user/posts/<%= post.post_id %>" class="media-left"> <img alt="" src="<%= post.image_url %>"> </a>
+                            <div class="media-body"> <a href="/user/posts/<%= post.post_id %>" class="catg_title"><%= post.title %></a> </div>
+                            </div>
+                        </li>
+                        </ul>
+                        <% count = count + 1 %>
+                    <% } %>
+                <% }) %>
+              </div>
+            </div>
+          </div>
+
+          <div class="single_post_content">
+            <h2><span>Photography</span></h2>
+            <ul class="photograph_nav  wow fadeInDown">
+                <% allposts.forEach((post, index) => { %>
+                    <% if (index < 6) { %>
+                        <li>
+                            <div class="photo_grid">
+                                <figure class="effect-layla"> <a class="fancybox-buttons" data-fancybox-group="button" href="images/photograph_img2.jpg" title="<%= post.title %>"> <img src="<%= post.image_url %>" alt=""/></a> </figure>
+                            </div>
+                        </li>
+                    <% } %>
+                <% }) %>
+            </ul>
+          </div>
+
+          <div class="single_post_content">
+            <h2><span>Games</span></h2>
+            <div class="single_post_content_left">
+                <%
+                let foundGamesPost = false;
+                count = 0;
+                %>
+
+                <% allposts.forEach((post, index) => { %>
+                    <% if (!foundGamesPost && post.category_name === 'Games') { %> 
+                        <ul class="business_catgnav wow fadeInDown">
+                            <li>
+                                <figure class="bsbig_fig"> 
+                                    <a href="/user/posts/<%= post.post_id %>" class="featured_img"> 
+                                        <img alt="" src="<%= post.image_url %>"> 
+                                        <span class="overlay"></span> 
+                                    </a>
+                                    <figcaption> 
+                                        <a href="/user/posts/<%= post.post_id %>"><%= post.title %></a> 
+                                    </figcaption>
+                                    <p><%= post.content.substring(0, 150) %>...</p>
+                                </figure>
+                            </li>
+                        </ul>
+                        <% foundGamesPost = true; %>
+                    <% } %>
+                <% }) %>
+            </div>
+            <div class="single_post_content_right">
+                <% allposts.forEach((post, index) => { %>
+                    <% if (foundGamesPost) { %> 
+                        <% if (post.category_name === 'Games') {%>
+                            <% foundGamesPost = false; %>
+                        <% } %>
+                    <% } else if (post.category_name === 'Games' && count < 4) { %>
+                        <ul class="spost_nav">
+                            <li>
+                                <div class="media wow fadeInDown"> 
+                                    <a href="/user/posts/<%= post.post_id %>" class="media-left"> 
+                                        <img alt="" src="<%= post.image_url %>"> 
+                                    </a>
+                                    <div class="media-body"> 
+                                        <a href="/user/posts/<%= post.post_id %>" class="catg_title"><%= post.title %></a> 
+                                    </div>
+                                </div>
+                            </li>
+                        </ul>
+                        <% count = count + 1; %>
+                    <% } %>
+                <% }) %>
+            </div>
+          </div>
+
+        </div>
+      </div>
+      <!--end left-->

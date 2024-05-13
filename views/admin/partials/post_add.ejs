@@ -1,0 +1,39 @@
+<h1>Thêm Bài Viết Mới</h1>
+        <form action="/posts/add" method="POST" enctype="multipart/form-data">
+            <div class="form-group">
+                <label for="title">Tiêu Đề:</label>
+                <input type="text" class="form-control" id="title" name="title" required>
+            </div>
+            <div class="form-group">
+                <label for="content">Nội Dung:</label>
+                <textarea class="form-control" id="content" name="content" rows="5" required></textarea>
+            </div>
+            <div class="form-group">
+                <label for="author">Tác Giả:</label>
+                <input type="text" class="form-control" id="author" name="author" required>
+            </div>
+            <div class="form-group">
+                <label for="publish_date">Ngày Đăng:</label>
+                <input type="date" class="form-control" id="publish_date" name="publish_date">
+            </div>
+            <div class="form-group">
+                <label for="status">Trạng Thái:</label>
+                <select class="form-control" id="status" name="status">
+                    <option value="published">Đã Xuất Bản</option>
+                    <option value="draft">Bản Nháp</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="category">Danh Mục:</label>
+                <select class="form-control" id="category" name="category_id">
+                    <% categories.forEach(function(category) { %>
+                        <option value="<%= category.category_id %>"><%= category.name %></option>
+                    <% }); %>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="image">Ảnh:</label>
+                <input type="file" class="form-control-file" id="image" name="image">
+            </div>
+            <button type="submit" class="btn btn-primary">Thêm Bài Viết</button>
+        </form>

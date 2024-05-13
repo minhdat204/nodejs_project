@@ -1,0 +1,46 @@
+<div class="row">
+    <div class="col-lg-12">
+        <h2 class="text-center mb-4">Quản Lý Newsletter</h2>
+        <div class="card">
+            <div class="card-header bg-dark text-white">
+                Danh Sách Email Đăng Ký
+            </div>
+            <ul class="list-group list-group-flush">
+                <% newsletter.forEach(function(email, index) { %>
+                    <li class="list-group-item">
+                        <div class="d-flex justify-content-between align-items-center">
+                            <span><%= index + 1 %>. <%= email.email %></span>
+                            <span>
+                                <button class="btn btn-sm btn-info mr-2" data-toggle="modal" data-target="#viewEmailModal-<%= email.newsletter_id %>">Xem</button>
+                                <button class="btn btn-sm btn-danger" onclick="confirmDelete('<%= email.newsletter_id %>')">Xoá</button>
+                            </span>
+                        </div>
+                    </li>
+                    <!-- Modal Xem Email -->
+                    <div class="modal fade" id="viewEmailModal-<%= email.newsletter_id %>" tabindex="-1" role="dialog" aria-labelledby="viewEmailModalLabel-<%= email.newsletter_id %>" aria-hidden="true">
+                        <div class="modal-dialog" role="document">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title" id="viewEmailModalLabel-<%= email.newsletter_id %>">Chi Tiết Email</h5>
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                    </button>
+                                </div>
+                                <div class="modal-body">
+                                    Email: <%= email.email %><br>
+                                    Ngày Đăng Ký: <%= email.created_at.toDateString() %>
+                                    <!-- Thêm các thông tin khác nếu cần -->
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                <% }); %>
+            </ul>
+            <% if(newsletter.length === 0) { %>
+                <div class="card-body">
+                    <p class="text-center mb-0">Chưa có email nào đăng ký.</p>
+                </div>
+            <% } %>
+        </div>
+    </div>
+</div>

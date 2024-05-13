@@ -1,0 +1,17 @@
+<div class="row">
+    <div class="col-lg-8 mx-auto">
+        <div class="card">
+            <div class="card-header bg-primary text-white">
+                Thông Tin Chi Tiết Email
+            </div>
+            <div class="card-body">
+                <h5 class="card-title"><%= email.email %></h5>
+                <p class="card-text">Ngày Đăng Ký: <%= email.created_at.toDateString() %></p>
+                <!-- Thêm các thông tin khác về email tại đây -->
+            </div>
+            <div class="card-footer">
+                <a href="/newsletter" class="btn btn-secondary">Quay Lại</a>
+            </div>
+        </div>
+    </div>
+</div>

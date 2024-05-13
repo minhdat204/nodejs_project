@@ -1,0 +1,128 @@
+<footer id="footer">
+  <div class="footer_top">
+    <div class="row">
+      
+      <div class="col-lg-4 col-md-4 col-sm-4">
+        <div class="footer_widget wow fadeInDown">
+          <h2>Tag</h2>
+          <ul class="tag_nav">
+            <% categories.forEach(function(category) { %>
+              <li><a href="/user/<%= category.name %>"><%= category.name %></a></li>
+            <% }); %>
+          </ul>
+        </div>
+      </div>
+      <div class="col-lg-4 col-md-4 col-sm-4">
+        <div class="footer_widget wow fadeInRightBig">
+          <h2>Contact</h2>
+            <ul class="tag_nav">
+              <% contactinfo.forEach(function(dataFooter) { %>
+              <li><a href=""> <i class="fas fa-map-marker-alt"></i> <%= dataFooter.address %> </a></li>
+              <li><a href="mailto:  <%= dataFooter.email %>"> <i class="fas fa-envelope"></i> <%= dataFooter.email %> </a></li>
+              <li><a href="<%= dataFooter.facebook %>"> <i class="fab fa-facebook"></i> Facebook</a></li>
+              <li><a href="<%= dataFooter.youtube %>"> <i class="fab fa-youtube"></i>Youtube </a></li>
+              <li><a href=""> <i class="fas fa-id-badge"></i> <%= dataFooter.copyright %></a></li>
+              <% }) %>
+            </ul>
+        </div>
+      </div>
+      <div class="col-lg-4 col-md-4 col-sm-4">
+        <div class="footer_widget wow fadeInRightBig">
+          <h2>Subcribe</h2>
+          <form id="newsletter-form">
+            <span>
+              <input style="color:black" name="email" id="emailsubcribe" type="email" placeholder="email" required> 
+              <button style="color:black" type="submit">Đăng kí</button>
+            </span>
+          </form>
+          <div id="message"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="footer_bottom">
+    <p class="copyright">Copyright &copy; 2045 <a href="index.html">NewsFeed</a></p>
+    <p class="developer">Developed By Wpfreeware</p>
+  </div>
+</footer>
+
+<script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+<!-- Popup Liên Hệ -->
+
+<!-- Thêm JavaScript để xử lý popup và form -->
+<script>
+// Mở popup liên hệ
+function openContactPopup() {
+    document.getElementById('contactPopup').style.display = 'block';
+}
+// Đóng popup liên hệ
+function closeContactPopup() {
+    document.getElementById('contactPopup').style.display = 'none';
+}
+// Xử lý gửi form liên hệ
+$('#contactForm').on('submit', function(e) {
+    e.preventDefault();
+    // Gửi thông tin liên hệ đến server và lưu vào CSDL
+    // ...
+    closeContactPopup();
+});
+</script>
+<script>
+  document.getElementById('newsletter-form').addEventListener('submit', function(e) {
+    e.preventDefault();
+    var email = document.getElementById('emailsubcribe').value;
+  
+    fetch('user/subscribe', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({email})
+    })
+    .then(response => response.text())
+    .then(data => {
+      document.getElementById('message').innerText = data;
+    })
+    .catch(error => {
+      console.error('Error:', error);
+    });
+  });
+  </script>
+  <script>
+    document.getElementById('contact-form').addEventListener('submit', function(e) {
+      e.preventDefault();
+      var name = document.getElementById('name').value;
+      var title = document.getElementById('title').value;
+      var email = document.getElementById('email').value;
+      var phone = document.getElementById('phone').value;
+      var message = document.getElementById('message').value;
+  
+      fetch('user/contact', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({ name, title, email, phone, message })
+      })
+      .then(response => response.text())
+      .then(data => {
+        document.getElementById('contact-message').innerText = data;
+      })
+      .catch(error => {
+        console.error('Error:', error);
+      });
+    });
+  </script>
+  
+<script src="/js/jquery.min.js"></script> 
+<script src="/js/wow.min.js"></script> 
+<script src="/js/bootstrap.min.js"></script> 
+<script src="/js/slick.min.js"></script> 
+<script src="/js/jquery.li-scroller.1.0.js"></script> 
+<script src="/js/jquery.newsTicker.min.js"></script> 
+<script src="/js/jquery.fancybox.pack.js"></script> 
+<script src="/js/custom.js"></script>
+</body>
+</html>

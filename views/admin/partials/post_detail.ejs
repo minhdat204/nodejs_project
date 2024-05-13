@@ -1,0 +1,27 @@
+<div class="container mt-5">
+    <h1 class="display-4"><%= post.title %></h1>
+    <p class="text-muted">Được viết bởi <%= post.author %> vào <%= post.publish_date.toDateString() %></p>
+    <hr>
+    <div class="badge badge-primary"><%= post.category_name %></div>
+    <div class="badge <%= post.status === 'published' ? 'badge-success' : 'badge-warning' %>"><%= post.status %></div>
+    <% if (images && images.length > 0) { %>
+        <div class="mt-4">
+            <% images.forEach(function(image) { %>
+                <img src="<%= image.url %>" alt="Hình ảnh bài viết" class="img-fluid">
+            <% }); %>
+        </div>
+    <% } %>
+    <div class="mt-4">
+        <p><%= post.content %></p>
+    </div>
+    <% if (keywords && keywords.length > 0) { %>
+        <div class="mt-4">
+            <h5>Từ khóa:</h5>
+            <% keywords.forEach(function(keyword) { %>
+                <span class="badge badge-info"><%= keyword.keyword %></span>
+            <% }); %>
+        </div>
+    <% } %>
+    <a href="/posts" class="btn btn-outline-secondary">Quay lại danh sách</a>
+    <a href="/posts/<%= post.post_id %>/edit" class="btn btn-outline-primary">Chỉnh sửa</a>
+</div>
