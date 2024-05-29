@@ -1,7 +1,7 @@
 Thành viên nhóm
-1/ Huỳnh Minh Đạt
-2/ Lý Thanh Duy
-3/ Phạm Tuấn Khang
+1/ Huỳnh Minh Đạt - 0306221011
+2/ Lý Thanh Duy - 0306221007
+3/ Phạm Tuấn Khang - 0306221029
 Danh sách các module và phiên bản
 - body-parser: ^1.20.2
 - connect-flash: ^0.1.1
